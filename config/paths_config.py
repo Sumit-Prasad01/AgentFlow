@@ -1,0 +1,1 @@
+CONFIG_FILE_PATH = "src/langgraph_agentic_ai/ui/uiconfigfile.ini"
