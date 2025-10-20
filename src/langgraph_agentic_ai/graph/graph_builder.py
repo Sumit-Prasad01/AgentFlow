@@ -4,6 +4,7 @@ from src.langgraph_agentic_ai.state.state import State
 from src.langgraph_agentic_ai.nodes.basic_chatbot_node import BasicChatbotNode
 from src.langgraph_agentic_ai.tools.search_tool import get_tools, create_tools_node
 from langgraph.prebuilt import tools_condition, ToolNode
+from src.langgraph_agentic_ai.nodes.chatbot_with_tool_node import ChatbotWithToolNode
 
 
 class GraphBuilder:
@@ -44,9 +45,11 @@ class GraphBuilder:
         llm = self.llm
 
         # Chatbot node
+        obj_chatbot_with_node = ChatbotWithToolNode(llm)
+        chatbot_node = obj_chatbot_with_node.create_chatbot(tools)
 
         # Add nodes
-        self.graph_builder.add_node("chatbot", "")
+        self.graph_builder.add_node("chatbot", chatbot_node)
         self.graph_builder.add_node("tools", tool_node)
 
         # Define edges
