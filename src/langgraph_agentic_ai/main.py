@@ -21,10 +21,15 @@ def load_langgraph_agentic_ai_app():
 
 
     if not user_input:
-        st.error("Error : Failed to load imput from the UI.")
+        st.error("Error : Failed to load input from the UI.")
         return 
     
-    user_message = st.chat_input("Enetr your message : ")
+    # Text input for user message
+    if st.session_state.IsFetchButtonClicked:
+        user_message = st.session_state.timeframe
+        
+    else:
+        user_message = st.chat_input("Enetr your message : ")
 
     if user_message:
         try:
@@ -47,9 +52,9 @@ def load_langgraph_agentic_ai_app():
                 DisplayResultStreamlit(usecase, graph, user_message).display_result_on_ui()
             
             except Exception as e:
-                st.error(f"Error : Graph set up failed - {e}")
+                st.error(f"Error (UP here ) : Graph set up failed - {e}")
                 return 
 
         except Exception as e:
-            st.error(f"Error : Graph set up falied - {e}")
+            st.error(f"Error (Down here) : Graph set up falied - {e}")
             return 

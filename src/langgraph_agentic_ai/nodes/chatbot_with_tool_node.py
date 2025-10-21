@@ -36,6 +36,6 @@ class ChatbotWithToolNode:
             Chatbot logic for processing the input state and returning a response.
             """
 
-            return {"message" : [llm_with_tools.invoke(state["messages"])]}
+            return {"messages" : [llm_with_tools.invoke(state["messages"])]}
         
         return chatbot_node
